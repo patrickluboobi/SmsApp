@@ -9,18 +9,23 @@ class MessageManipulator {
 	
 	}
 	function checkProperty($message) {
-	
 		$property = substr($message, 0, 4);
+		$stringArray = explode(' ', $message);
+		if (strlen($stringArray[1]) == 5) {
+			$property = substr($message, 0, 5);
+		}
+		
 		return $property;
 	}
 	function checkLocation($message) {
 		
-		$length = ((strlen($message))-1);
-		$location = substr($message, 5, $length);
+		$stringArray = explode(' ', $message);
+		$location = $stringArray[2];
 		return $location;
 		
 	}
 	function compareProperty($message) {
+		
 		$property = $this->checkProperty($message);
 		if (strcasecmp($property, self::LANDSTRING) == 0)
 			return "land";
