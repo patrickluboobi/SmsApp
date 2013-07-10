@@ -9,11 +9,11 @@ if ($sender!='') {
 	/* Return a response SMS message */
 
 	/* Process Message */
-	$messageManipulator = new MessageManipulator();
-	$propertyString = $messageManipulator->compareProperty($message);
+	$messageManipulator = new MessageManipulator($message);
+	$propertyString = $messageManipulator->compareProperty();
 		
 	if(strcasecmp($propertyString, "land") == 0){
-		$location = $messageManipulator->checkLocation($message);
+		$location = $messageManipulator->checkLocation();
 		/* query land table in database */
 		$query = "select description from land where location ='$location'";
 		$databaseHelper = new DatabaseHelper();
@@ -21,7 +21,7 @@ if ($sender!='') {
 
 	}
 	elseif(strcasecmp($propertyString, "house") == 0){
-		$location = $messageManipulator->checkLocation($message);
+		$location = $messageManipulator->checkLocation();
 		/* query house table in database */
 		$query = "select description from house where location ='$location'";
 		$databaseHelper = new DatabaseHelper();
