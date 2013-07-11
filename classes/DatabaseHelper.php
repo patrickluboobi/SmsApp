@@ -5,6 +5,7 @@ class DatabaseHelper {
 	
 	function __construct() {
 		
+		$this->setResponsetext("Area not found");
 	}
 	
 
@@ -28,7 +29,7 @@ class DatabaseHelper {
 	function createConnection() {
 		try {
 	
-			return new PDO("mysql:host=localhost;dbname=land", "root", "", "");
+			return new PDO("mysql:host=localhost;dbname=Property", "root", "");
 	
 		} catch (PDOException $e) {
 	
@@ -37,8 +38,6 @@ class DatabaseHelper {
 	}
 	function executeQuery($query) {
 				
-		$this->setResponsetext("Area not found");
-		
 		$dbh = $this->createConnection();
 		$statementHandler = $dbh->query($query);
 		$result = $statementHandler->fetchAll(PDO::FETCH_ASSOC);

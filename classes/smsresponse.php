@@ -31,7 +31,7 @@ if ($sender!='') {
 
 	else{
 		
-		$responsetext = "Please type land location or house location eg land kololo";
+		$responsetext = "Error, Please type land location or house location eg land kololo";
 
 		}
 
