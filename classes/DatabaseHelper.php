@@ -36,16 +36,34 @@ class DatabaseHelper {
 			echo "Connection error: ".$e->getMessage();
 		}
 	}
+	/*
+	 * Execute the query returning the string as a numbered list of 
+	 * property descriptions and returning the default "area not found
+	 * response if the location does not exist in the database.
+	 * 
+	 */
 	function executeQuery($query) {
 				
 		$dbh = $this->createConnection();
 		$statementHandler = $dbh->query($query);
 		$result = $statementHandler->fetchAll(PDO::FETCH_ASSOC);
 		
-		if ($result) 
-			$this->setResponsetext($result['description']);
+		if($result){
+			$returnedString = null;
+			$i = 0;
+			
+			foreach ($result as $row){
+				$i++;			
+				
+				$returnedString = $returnedString.$i.'. '.$row['description'].'\n';
+			}
 		
+		$this->setResponsetext($returnedString);
+		}		 
+		
+		$dbh = null;
 		return $this->getResponsetext();
+		
 	}
 	
 }

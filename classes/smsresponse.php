@@ -3,11 +3,6 @@
 $sender = $_GET['sender'];
 $message = $_GET['msgdata'];
 
-if ($sender!='') {
-
-
-	/* Return a response SMS message */
-
 	/* Process Message */
 	$messageManipulator = new MessageManipulator($message);
 	$propertyString = $messageManipulator->compareProperty();
@@ -15,7 +10,7 @@ if ($sender!='') {
 	if(strcasecmp($propertyString, "land") == 0){
 		$location = $messageManipulator->checkLocation();
 		/* query land table in database */
-		$query = "select description from land where location ='$location'";
+		$query = "select description from land where location ='$location' LIMIT(0, 10)";
 		$databaseHelper = new DatabaseHelper();
 		$responsetext = $databaseHelper->executeQuery($query);
 
@@ -23,7 +18,7 @@ if ($sender!='') {
 	elseif(strcasecmp($propertyString, "house") == 0){
 		$location = $messageManipulator->checkLocation();
 		/* query house table in database */
-		$query = "select description from house where location ='$location'";
+		$query = "select description from house where location ='$location' LIMIT(0, 10)";
 		$databaseHelper = new DatabaseHelper();
 		$responsetext = $databaseHelper->executeQuery($query);
 		
@@ -37,12 +32,5 @@ if ($sender!='') {
 
 	/* send message back to user */
 	echo "{SMS:TEXT}{}{}{".$sender."}{".$responsetext."}";
-
-}
-
-else{
-
-	echo "The PHP script is ready for accepting messages";
-}
 
 ?>
