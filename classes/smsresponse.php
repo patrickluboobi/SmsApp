@@ -1,5 +1,11 @@
 <?php
 
+ #####################################################
+ #                                                   #
+ #   Written By Luboobi Patrick(Software Engineer)   #
+ #                                                   #
+ #####################################################
+
 $sender = $_GET['sender'];
 $message = $_GET['msgdata'];
 
