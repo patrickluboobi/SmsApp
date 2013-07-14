@@ -17,7 +17,7 @@ class MessageManipulator {
 	public function getMessage () {
 		return $this->message;
 	}
-
+	
 	/**
 	 * Checks if first string of the message is 4 letters( land check)
 	 * to substring thefirst four letters of the message and  5 letters

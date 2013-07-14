@@ -6,19 +6,25 @@
  #                                                   #
  #####################################################
 
-$sender = $_GET['sender'];
-$message = $_GET['msgdata'];
+	$sender = $_GET['sender'];
+	$message = $_GET['msgdata'];
+
+	function __autoload($classname){
+		require ($classname.'.php');
+	
+	}
 
 	/* Process Message */
 	$messageManipulator = new MessageManipulator($message);
 	$propertyString = $messageManipulator->compareProperty();
-		
+	
 	if(strcasecmp($propertyString, "land") == 0){
 		$location = $messageManipulator->checkLocation();
 		/* query land table in database */
 		$query = "select description from land where location ='$location' LIMIT(0, 10)";
 		$databaseHelper = new DatabaseHelper();
 		$responsetext = $databaseHelper->executeQuery($query);
+		echo $responsetext;
 
 	}
 	elseif(strcasecmp($propertyString, "house") == 0){

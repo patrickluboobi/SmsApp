@@ -54,14 +54,13 @@ class DatabaseHelper {
 			
 			foreach ($result as $row){
 				$i++;			
-				
-				$returnedString = $returnedString.$i.'. '.$row['description'].'\n';
+				$returnedString = $returnedString.$i.'. '.$row['description'];
 			}
 		
 		$this->setResponsetext($returnedString);
 		}		 
 		
-		$dbh = null;
+		//$dbh = null;
 		return $this->getResponsetext();
 		
 	}
