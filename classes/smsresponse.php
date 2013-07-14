@@ -1,36 +1,36 @@
 <?php
 
- #####################################################
- #                                                   #
- #   Written By Luboobi Patrick(Software Engineer)   #
- #                                                   #
- #####################################################
+ ########################################################
+ ##                                                    ##
+ ##   Written By Luboobi Patrick (Software Engineer)   ##
+ ##                                                    ##
+ ########################################################
 
 	$sender = $_GET['sender'];
 	$message = $_GET['msgdata'];
-
+	
 	function __autoload($classname){
 		require ($classname.'.php');
 	
-	}
-
+	} 
+	
 	/* Process Message */
 	$messageManipulator = new MessageManipulator($message);
 	$propertyString = $messageManipulator->compareProperty();
 	
 	if(strcasecmp($propertyString, "land") == 0){
 		$location = $messageManipulator->checkLocation();
+
 		/* query land table in database */
-		$query = "select description from land where location ='$location' LIMIT(0, 10)";
+		$query = "SELECT description FROM land WHERE location ='$location' LIMIT 0,10";
 		$databaseHelper = new DatabaseHelper();
 		$responsetext = $databaseHelper->executeQuery($query);
-		echo $responsetext;
-
+		
 	}
 	elseif(strcasecmp($propertyString, "house") == 0){
 		$location = $messageManipulator->checkLocation();
 		/* query house table in database */
-		$query = "select description from house where location ='$location' LIMIT(0, 10)";
+		$query = "SELECT description FROM house WHERE location ='$location' LIMIT 0, 10";
 		$databaseHelper = new DatabaseHelper();
 		$responsetext = $databaseHelper->executeQuery($query);
 		
