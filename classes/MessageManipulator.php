@@ -27,9 +27,9 @@ class MessageManipulator {
 	function checkProperty() {
 		$property = substr($this->message, 0, 4);
 		
-		$stringArray = explode(' ', $this->message);
+		$messageArray = explode(' ', $this->message);
 		
-		if ((strlen($stringArray[0])) == 5) {
+		if ((strlen($messageArray[0])) == 5) {
 			$property = substr($this->message, 0, 5);
 
 		}
@@ -38,10 +38,18 @@ class MessageManipulator {
 	
 	/**
 	 *  Checks the last string of the message to get the
-	 * specified location  */
+	 * specified location, returns null if message has 
+	 * one string or is empty  
+	 * 
+	 * */
 	function checkLocation() {
 		
 		$stringArray = explode(' ', $this->message);
+		
+		if (count($stringArray) < 2){
+			return null;
+		}
+		
 		$location = $stringArray[1];
 		return $location;
 		

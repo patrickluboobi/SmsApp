@@ -38,7 +38,7 @@ class DatabaseHelper {
 	}
 	/**
 	 * Execute the query returning the string as a numbered list of 
-	 * property descriptions and returning the default "area not found
+	 * property descriptions and returning the default "area not found"
 	 * response if the location does not exist in the database.
 	 * 
 	 */
