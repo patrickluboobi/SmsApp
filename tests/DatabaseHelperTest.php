@@ -34,6 +34,11 @@ class TestOfMessageManipulation extends UnitTestCase {
 		$databaseHelper = new DatabaseHelper();
 		$this->assertEqual("Area not found", $databaseHelper->executeQuery("SELECT description FROM land WHERE location = 'noArea'"));
 	}
+	
+	function testResultWhenAreaExists() {
+		$databaseHelper = new DatabaseHelper();
+		$this->assertEqual("1. 3 acres near st James Primary school", $databaseHelper->executeQuery("SELECT description FROM land WHERE location = 'mukono'"));
+	}
 }
 
 
