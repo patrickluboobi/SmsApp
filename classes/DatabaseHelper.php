@@ -36,12 +36,11 @@ class DatabaseHelper {
 			echo "Connection error: ".$e->getMessage();
 		}
 	}
-	/**
-	 * Execute the query returning the string as a numbered list of 
-	 * property descriptions and returning the default "area not found"
-	 * response if the location does not exist in the database.
-	 * 
-	 */
+	
+	 // Execute the query returning the string as a numbered list of 
+	 // property descriptions and returning the default "area not found"
+	 // response if the location does not exist in the database.
+	 
 	function executeQuery($query) {
 				
 		$dbh = $this->createConnection();

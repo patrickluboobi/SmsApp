@@ -18,12 +18,11 @@ class MessageManipulator {
 		return $this->message;
 	}
 	
-	/**
-	 * Checks if first string of the message is 4 letters( land check)
-	 * to substring thefirst four letters of the message and  5 letters
-	 * (house check) to substring the first five letters of the database
-	 *  
-	 *   */
+	
+	 // Checks if first string item of the message is 4 letters( land check)
+	 // to substring the first four letters of the message and  5 letters
+	 // (house check) to substring the first five letters of the database
+	 
 	function checkProperty() {
 		$property = substr($this->message, 0, 4);
 		
@@ -36,12 +35,11 @@ class MessageManipulator {
 		return $property;
 	}
 	
-	/**
-	 *  Checks the last string of the message to get the
-	 * specified location, returns null if message has 
-	 * one string or is empty  
-	 * 
-	 * */
+	
+	 // Checks the last string item of the message to get the
+	 // specified location, returns null if message has 
+	 // one string or is empty  
+	 
 	function checkLocation() {
 		
 		$stringArray = explode(' ', $this->message);
@@ -54,12 +52,11 @@ class MessageManipulator {
 		return $location;
 		
 	}
-	/**
-	 * Returns land if the first string of the message is 'land' and
-	 * returns house if the first string of the message is 'house' and
-	 * returns null if it is neither
-	 *   
-	 *   */
+	
+	 // Returns land if the first string of the message is 'land' and
+	 // returns house if the first string of the message is 'house' and
+	 // returns null if it is neither
+	
 	function compareProperty() {
 		
 		$property = $this->checkProperty($this->message);
