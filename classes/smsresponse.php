@@ -14,10 +14,10 @@
 	
 	} 
 	
-	/* 
-	 * Process Message
-	 * 
-	 *  */
+	 # 
+	 # Process Message
+	 # 
+	 #
 	$messageManipulator = new MessageManipulator($message);
 	$propertyString = $messageManipulator->compareProperty();
 	
@@ -29,20 +29,20 @@
 			
 			if ($price != null) {
 								
-				/*
-				 *  query land table in database
-				*
-				*  */
+				#
+				#  query land table in database
+				#
+				#
 				
 				$query = "SELECT description FROM land WHERE location ='$location' LIMIT 0,10";
 				$databaseHelper = new DatabaseHelper();
 				$responsetext = $databaseHelper->executeQuery($query);
-			}
-						
+			}	
 		}
-		else 
+		else{
+			 
 			$responsetext = $messageManipulator->printError();
-		
+		}
 	}
 	elseif(strcasecmp($propertyString, "house") == 0){
 		$location = $messageManipulator->checkLocation();
@@ -52,32 +52,30 @@
 			
 			if ($price != null) {
 								
-				/*
-				 *  query house table in database
-				*
-				*  */
+				#
+				#  query house table in database
+				#
+				#
 				$query = "SELECT description FROM house WHERE location ='$location' LIMIT 0, 10";
 				$databaseHelper = new DatabaseHelper();
 				$responsetext = $databaseHelper->executeQuery($query);
-			}
-			
+			}			
 		}
-		else 
+		else{
+			 
 			$responsetext = $messageManipulator->printError();
-		
-		
+		}
 	}
-
 	else{
 		
 		$responsetext = $messageManipulator->printError();
 
 		}
 
-	/* 
-	 * send message back to user 
-	 * 
-	 * */
+	 # 
+	 # send message back to user 
+	 # 
+	 #
 	echo "{SMS:TEXT}{}{}{".$sender."}{".$responsetext."}";
 
 ?>

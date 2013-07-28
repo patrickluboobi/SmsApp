@@ -23,8 +23,9 @@ class DatabaseHelper {
 		$this->responsetext = $responsetext;
 	}
 
+	
 	/**
-	 * Connect to server and the database   
+	 * @return PDO							For successsful database connection
 	 */
 	function createConnection() {
 		try {
@@ -37,10 +38,15 @@ class DatabaseHelper {
 		}
 	}
 	
-	 // Execute the query returning the string as a numbered list of 
-	 // property descriptions and returning the default "area not found"
-	 // response if the location does not exist in the database.
-	 
+	/**
+	 * @param string $query
+	 * 
+	 * @return string $message				Default "Area not Found" if there are
+	 * 										no results	from the query else pass
+	 * 										the result to the message and return
+	 * 										the message
+	 *  		
+	 */
 	function executeQuery($query) {
 				
 		$dbh = $this->createConnection();

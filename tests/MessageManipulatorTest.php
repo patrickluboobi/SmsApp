@@ -108,6 +108,29 @@ class TestOfMessageManipulation extends UnitTestCase {
 		$this->assertEqual("house", $messageString);
 	}
 	
+	function testStringReturnedFromcheckPriceWhenGivenEmptyString() {
+		$MessageManipulator = new MessageManipulator("");
+		$messageString = $MessageManipulator->checkPrice();
+		$this->assertEqual(null, $messageString);
+	}
+	
+	function testStringReturnedFromcheckPriceWhenGivenTwoStrings() {
+		$MessageManipulator = new MessageManipulator("land Kampala");
+		$messageString = $MessageManipulator->checkPrice();
+		$this->assertEqual(null, $messageString);
+	}
+	
+	function testStringReturnedFromcheckPriceWhenGivenOneString() {
+		$MessageManipulator = new MessageManipulator("land");
+		$messageString = $MessageManipulator->checkPrice();
+		$this->assertEqual(null, $messageString);
+	}
+	
+	function testStringReturnedFromcheckPriceWhenGivenThreeStrings() {
+		$MessageManipulator = new MessageManipulator("land Kampala 5000000");
+		$messageString = $MessageManipulator->checkPrice();
+		$this->assertEqual("5000000", $messageString);
+	}
 }	
 
 ?>
