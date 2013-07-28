@@ -14,35 +14,70 @@
 	
 	} 
 	
-	/* Process Message */
+	/* 
+	 * Process Message
+	 * 
+	 *  */
 	$messageManipulator = new MessageManipulator($message);
 	$propertyString = $messageManipulator->compareProperty();
 	
 	if(strcasecmp($propertyString, "land") == 0){
 		$location = $messageManipulator->checkLocation();
-
-		/* query land table in database */
-		$query = "SELECT description FROM land WHERE location ='$location' LIMIT 0,10";
-		$databaseHelper = new DatabaseHelper();
-		$responsetext = $databaseHelper->executeQuery($query);
+		
+		if ($location != null) {
+			$price = $messageManipulator->checkPrice();
+			
+			if ($price != null) {
+								
+				/*
+				 *  query land table in database
+				*
+				*  */
+				
+				$query = "SELECT description FROM land WHERE location ='$location' LIMIT 0,10";
+				$databaseHelper = new DatabaseHelper();
+				$responsetext = $databaseHelper->executeQuery($query);
+			}
+						
+		}
+		else 
+			$responsetext = $messageManipulator->printError();
 		
 	}
 	elseif(strcasecmp($propertyString, "house") == 0){
 		$location = $messageManipulator->checkLocation();
-		/* query house table in database */
-		$query = "SELECT description FROM house WHERE location ='$location' LIMIT 0, 10";
-		$databaseHelper = new DatabaseHelper();
-		$responsetext = $databaseHelper->executeQuery($query);
+		
+		if ($location != null) {
+			$price = $messageManipulator->checkPrice();
+			
+			if ($price != null) {
+								
+				/*
+				 *  query house table in database
+				*
+				*  */
+				$query = "SELECT description FROM house WHERE location ='$location' LIMIT 0, 10";
+				$databaseHelper = new DatabaseHelper();
+				$responsetext = $databaseHelper->executeQuery($query);
+			}
+			
+		}
+		else 
+			$responsetext = $messageManipulator->printError();
+		
 		
 	}
 
 	else{
 		
-		$responsetext = "Error, Please type land location or house location eg land kololo";
+		$responsetext = $messageManipulator->printError();
 
 		}
 
-	/* send message back to user */
+	/* 
+	 * send message back to user 
+	 * 
+	 * */
 	echo "{SMS:TEXT}{}{}{".$sender."}{".$responsetext."}";
 
 ?>

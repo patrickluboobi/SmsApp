@@ -36,9 +36,9 @@ class MessageManipulator {
 	}
 	
 	
-	 // Checks the last string item of the message to get the
+	 // Checks the second string item of the message to get the
 	 // specified location, returns null if message has 
-	 // one string or is empty  
+	 // less than three string items or is empty  
 	 
 	function checkLocation() {
 		
@@ -53,9 +53,10 @@ class MessageManipulator {
 		
 	}
 	
-	 // Returns land if the first string of the message is 'land' and
-	 // returns house if the first string of the message is 'house' and
-	 // returns null if it is neither
+	
+	// Returns land if the first string of the message is 'land' and
+	// returns house if the first string of the message is 'house' and
+	// returns null if it is neither
 	
 	function compareProperty() {
 		
@@ -67,7 +68,36 @@ class MessageManipulator {
 			return "house";
 		
 		return null;
-	}		
+	}
+	
+	
+	// Checks the third string item of the message to get the
+	// specified price, returns null if message has
+	// one string or is empty
+	
+	function checkPrice() {
+		
+		$stringArray = explode(' ', $this->message);
+		
+		if (count($stringArray) < 3){
+			return null;
+		}
+		
+		$price = $stringArray[2];
+		return $price;
+		
+	}
+	
+	
+	/* 
+	 * @return the $errorMessage 
+	 *   
+	 *   */
+	
+	function printError() {
+		$errorMessage ="Error, Please type land location or house location eg land kololo";
+		return $errorMessage;
+	}
 	
 }
 
