@@ -34,7 +34,9 @@
 				#
 				#
 				
-				$query = "SELECT description FROM land WHERE location ='$location' LIMIT 0,10";
+				$query = "SELECT description FROM land WHERE 
+						  location ='$location' AND price = '$price' LIMIT 0,10";
+				
 				$databaseHelper = new DatabaseHelper();
 				$responsetext = $databaseHelper->executeQuery($query);
 			}	
@@ -56,7 +58,9 @@
 				#  query house table in database
 				#
 				#
-				$query = "SELECT description FROM house WHERE location ='$location' LIMIT 0, 10";
+				$query = "SELECT description FROM house WHERE
+						  location ='$location' AND price = '$price' LIMIT 0, 10";
+				
 				$databaseHelper = new DatabaseHelper();
 				$responsetext = $databaseHelper->executeQuery($query);
 			}			

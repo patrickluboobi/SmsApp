@@ -8,11 +8,14 @@ class MessageManipulator {
 
 	const LANDSTRING = "land";
 	const HOUSESTRING = "house";
-	private $message;
+	private $messageArray;
 	
+	/**
+	 * @param string $message
+	 */
 	function __construct($message) {
 		
-		$this->message = $message;	
+		$this->messageArray = explode(' ', $message);	
 	}
 	
 	/**
@@ -20,7 +23,7 @@ class MessageManipulator {
 	 * @access public
 	 */
 	public function getMessage () {
-		return $this->message;
+		return $this->messageArray;
 	}
 	
 	 
@@ -34,15 +37,9 @@ class MessageManipulator {
 	 * 
 	 */
 	function checkProperty() {
-		$property = substr($this->message, 0, 4);
 		
-		$messageArray = explode(' ', $this->message);
-		
-		if ((strlen($messageArray[0])) == 5) {
-			$property = substr($this->message, 0, 5);
-
-		}
-		return $property;
+		$property = $this->messageArray;
+		return $property[0];
 	}
 	
 	 
@@ -56,14 +53,13 @@ class MessageManipulator {
 	 */
 	function checkLocation() {
 		
-		$stringArray = explode(' ', $this->message);
+		$location = $this->messageArray;
 		
-		if (count($stringArray) < 2){
+		if (count($location) < 2){
 			return null;
 		}
 		
-		$location = $stringArray[1];
-		return $location;
+		return $location[1];
 	}
 	
 	
@@ -78,7 +74,7 @@ class MessageManipulator {
 	 */
 	function compareProperty() {
 		
-		$property = $this->checkProperty($this->message);
+		$property = $this->checkProperty($this->messageArray);
 		
 		if (strcasecmp($property, self::LANDSTRING) == 0)
 			return "land";
@@ -98,15 +94,13 @@ class MessageManipulator {
 	 * 
 	 */
 	function checkPrice() {
+		$price = $this->messageArray;	
 		
-		$stringArray = explode(' ', $this->message);
-		
-		if (count($stringArray) < 3){
+		if (count($price) < 3){
 			return null;
 		}
 		
-		$price = $stringArray[2];
-		return $price;	
+		return $price[2];	
 	}
 	
 	

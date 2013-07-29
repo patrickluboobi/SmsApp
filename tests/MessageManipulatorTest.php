@@ -13,7 +13,7 @@ class TestOfMessageManipulation extends UnitTestCase {
 	function testStringpasedInConstructor() {
 		$MessageManipulator = new MessageManipulator("land kampala");
 		$messageString = $MessageManipulator->getMessage();
-		$this->assertEqual("land kampala", $messageString);
+		$this->assertEqual(['land','kampala'], $messageString);
 	}
 	
 	function testStringReturnedFromcheckPropertyWhenGivenLandWithoutArea() {
